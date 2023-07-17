@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 const UserSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -18,12 +17,10 @@ const UserSchema = new mongoose.Schema({
         },
         salt: {
             type: String,
-            required: true,
             select: false
         },
         sessionToken: {
             type: String,
-            required: true,
             select: false
         }
     }
