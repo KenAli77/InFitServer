@@ -69,7 +69,7 @@ export const login = async (req: express.Request, res: express.Response) => {
 
         res.cookie("authToken",user.auth.sessionToken, {domain:'localhost',path:'/'})
 
-        return res.status(200).json(user).end()
+        return res.status(200).json({authToken:user.auth.sessionToken,id:user._id}).end()
 
     } catch (e) {
         console.log(e)
