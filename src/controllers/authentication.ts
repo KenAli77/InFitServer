@@ -46,6 +46,7 @@ export const login = async (req: express.Request, res: express.Response) => {
         const {email,password} = req.body
 
         if(!email || !password){
+            console.log("missing field")
             return res.sendStatus(400)
         }
 
@@ -53,6 +54,7 @@ export const login = async (req: express.Request, res: express.Response) => {
         const user = await getUserByEmail(email).select('+auth.salt + auth.password')
 
         if(!user){
+            console.log("user already registered")
             return res.sendStatus(400)
         }
 
@@ -69,7 +71,7 @@ export const login = async (req: express.Request, res: express.Response) => {
 
         res.cookie("authToken",user.auth.sessionToken, {domain:'localhost',path:'/'})
 
-        return res.status(200).json({authToken:user.auth.sessionToken,id:user._id}).end()
+        return res.status(200).json({success:true,authToken:user.auth.sessionToken,id:user._id}).end()
 
     } catch (e) {
         console.log(e)

@@ -23,6 +23,10 @@ const UserSchema = new mongoose.Schema({
             type: String,
             select: false
         }
+    },
+    onBoardingDone:{
+        type:Boolean,
+        default: false
     }
 })
 
