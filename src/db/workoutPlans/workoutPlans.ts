@@ -3,7 +3,7 @@ import {Difficulty, Goal, WorkoutPlan} from "./workoutPlan.interface";
 
 
 const WorkoutPlanSchema = new mongoose.Schema<WorkoutPlan>({
-    userId:{type:mongoose.Schema.Types.ObjectId},
+    userId: {type: mongoose.Schema.Types.ObjectId},
     name: {type: String},
     frequency: [{type: Number, enum: [0, 1, 2, 3, 4, 5, 6]}],
     difficulty: {type: Number, enum: Object.values(Difficulty)},
@@ -16,11 +16,8 @@ const WorkoutPlanModel = mongoose.model<WorkoutPlan>('WorkoutPlan', WorkoutPlanS
 
 export default WorkoutPlanModel;
 
-
-export const getWorkouts = () => WorkoutPlanModel.find()
-export const getUserByEmail = (email:string) => WorkoutPlanModel.findOne({email})
-export const getUserBySessionToken = (token:string) => WorkoutPlanModel.findOne({'auth.sessionToken':token})
-export const getUserById = (id:string) => WorkoutPlanModel.findById(id)
-export const createUser = (values: Record<string, any>) => new WorkoutPlanModel(values).save().then((user)=> user.toObject())
-export const deleteUserById = (id:string) => WorkoutPlanModel.findOneAndDelete({_id:id})
-export const updateUserById = (id:string,values:Record<string,any>) => WorkoutPlanModel.findByIdAndUpdate(id,values)
+export const getWorkouts = (userId: string) => WorkoutPlanModel.find({userId})
+export const getWorkoutById = (id: string) => WorkoutPlanModel.findById(id)
+export const createWorkoutPlan = (workoutPlan: WorkoutPlan) => new WorkoutPlanModel(workoutPlan).save().then((workout) => workout.toObject())
+export const deleteWorkoutPlan = (id: string) => WorkoutPlanModel.findOneAndDelete({_id: id})
+export const updateWorkoutPlan = (id: string, workoutPlan: WorkoutPlan) => WorkoutPlanModel.findByIdAndUpdate(id, workoutPlan)
