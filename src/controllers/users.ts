@@ -1,7 +1,7 @@
 import {Response} from "express";
 import {Request} from "express";
 import express from "express";
-import {getUsers} from "../db/users";
+import {getUsers} from "../db/users/users";
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {

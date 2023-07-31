@@ -1,6 +1,6 @@
 import {NextFunction,Request,Response} from "express";
 import {get, merge} from "lodash";
-import {getUserBySessionToken} from "../db/users";
+import {getUserBySessionToken} from "../db/users/users";
 
 export const isAuthenticated = async (req: Request, res: Response ,next:NextFunction) => {
 
