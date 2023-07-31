@@ -3,13 +3,13 @@ import {Difficulty, Goal, WorkoutPlan} from "./workoutPlan.interface";
 
 
 const WorkoutPlanSchema = new mongoose.Schema<WorkoutPlan>({
-    userId: {type: mongoose.Schema.Types.ObjectId},
     name: {type: String},
     frequency: [{type: Number, enum: [0, 1, 2, 3, 4, 5, 6]}],
     difficulty: {type: Number, enum: Object.values(Difficulty)},
     goal: {type: Number, enum: Object.values(Goal)},
     duration: {type: Number},
-    workouts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Workout'}]
+    workouts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Workout'}],
+    userId: {type: mongoose.Schema.Types.ObjectId},
 })
 
 const WorkoutPlanModel = mongoose.model<WorkoutPlan>('WorkoutPlan', WorkoutPlanSchema);
