@@ -9,7 +9,7 @@ const WorkoutPlanSchema = new mongoose.Schema<WorkoutPlan>({
     goal: {type: Number, enum: Object.values(Goal)},
     duration: {type: Number},
     workouts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Workout'}],
-    userId: {type: mongoose.Schema.Types.ObjectId},
+    userId: {type: mongoose.Schema.Types.ObjectId, ref :'User'},
 })
 
 const WorkoutPlanModel = mongoose.model<WorkoutPlan>('WorkoutPlan', WorkoutPlanSchema);

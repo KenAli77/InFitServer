@@ -1,4 +1,5 @@
-
+import mongoose from "mongoose";
+import {User} from "../users/user.interface";
 
 export enum Difficulty {
     Beginner,
@@ -7,17 +8,17 @@ export enum Difficulty {
 }
 
 export enum Goal {
-    Mass ,
-    FatLoss  ,
-    Maintain ,
+    Mass,
+    FatLoss,
+    Maintain,
 }
 
 export interface WorkoutPlan {
-    userId:string,
+    userId: string | User,
     name: string,
     frequency: number[],
     difficulty: Difficulty,
     goal: Goal,
     duration: number,
-    workouts:string[],
+    workouts: string[],
 }
