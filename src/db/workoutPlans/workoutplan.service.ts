@@ -1,11 +1,11 @@
 import {IWorkoutPlan} from "./workoutPlan.interface";
-import WorkoutPlan from "./workoutPlan";
+import WorkoutPlan, {WorkoutPlanDocument} from "./workoutPlan";
 import {WorkoutService} from "../workouts/workout.service";
 import workout, {WorkoutDocument} from "../workouts/workout";
 
 export class WorkoutPlanService {
 
-    static async createWorkoutPlan(workoutPlanData: IWorkoutPlan, userId: string) {
+    static async createWorkoutPlan(workoutPlanData: IWorkoutPlan, userId: string):Promise<WorkoutPlanDocument> {
         return new Promise(async (resolve, reject) => {
             try {
                 const workoutPlan = new WorkoutPlan()
@@ -17,7 +17,6 @@ export class WorkoutPlanService {
                 workoutPlan.duration = workoutPlanData.duration
 
                 for (const workout of workoutPlanData.workouts) {
-
                     const upload = await WorkoutService.createWorkout(workout as WorkoutDocument, workoutPlanData.duration,workoutPlan._id)
                     workoutPlan.workouts.push(upload._id)
                 }
