@@ -11,7 +11,11 @@ export class WorkoutPlanService {
             try {
                 const workoutPlan = new WorkoutPlan()
 
-                Object.assign(workoutPlan,workoutPlanData)
+                workoutPlan.name = workoutPlanData.name
+                workoutPlan.frequency = workoutPlanData.frequency
+                workoutPlan.difficulty = workoutPlanData.difficulty
+                workoutPlan.goal = workoutPlanData.goal
+                workoutPlan.duration = workoutPlanData.duration
 
                 for (const workout of workoutPlanData.workouts) {
                     const upload = await WorkoutService.createWorkout(workout as WorkoutDocument, workoutPlanData.duration, workoutPlan._id)
@@ -36,10 +40,17 @@ export class WorkoutPlanService {
 
                 const workoutPlanToEdit = await WorkoutPlan.findById(id)
 
-                if(workoutPlanToEdit){
-                    Object.assign(workoutPlanToEdit,workoutPlan)
-                } else {
-                    reject(Error("no document with given id"))
+                if(!workoutPlanToEdit){reject(Error("no document with given id"))}
+
+                workoutPlanToEdit.name = workoutPlan.name
+                workoutPlanToEdit.frequency = workoutPlan.frequency
+                workoutPlanToEdit.difficulty = workoutPlan.difficulty
+                workoutPlanToEdit.goal = workoutPlan.goal
+                workoutPlanToEdit.duration = workoutPlan.duration
+
+                for (let workout of workoutPlanToEdit.workouts) {
+                    // TODO : update workouts within workoutPlans
+
                 }
 
                 await workoutPlanToEdit.save()
@@ -99,7 +110,7 @@ export class WorkoutPlanService {
     static async findWorkoutPlanWithProp(prop: any): Promise<WorkoutPlanDocument> {
         return new Promise(async (resolve, reject) => {
             try {
-                const document = WorkoutPlan.findOne(prop)
+                const document = await WorkoutPlan.findOne(prop)
                 resolve(document)
             } catch (e) {
                 reject(e)

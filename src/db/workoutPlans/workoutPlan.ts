@@ -12,15 +12,15 @@ const WorkoutPlanSchema = new mongoose.Schema<IWorkoutPlan>({
     goal: {type: Number},
     duration: {type: Number},
     workouts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Workout'}],
-    userId: {type: mongoose.Schema.Types.ObjectId, ref :'User'},
+    userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 })
 
 const WorkoutPlanModel = mongoose.model<WorkoutPlanDocument>('WorkoutPlan', WorkoutPlanSchema);
 
 export default WorkoutPlanModel;
 
-export const getWorkouts = (userId: string) => WorkoutPlanModel.find({userId})
-export const getWorkoutById = (id: string) => WorkoutPlanModel.findById(id)
-export const createWorkoutPlan = (workoutPlan: IWorkoutPlan,userId:string) => WorkoutPlanService.createWorkoutPlan(workoutPlan,userId)
-export const deleteWorkoutPlan = (id: string) => WorkoutPlanModel.findOneAndDelete({_id: id})
-export const updateWorkoutPlan = (id: string, workoutPlan: IWorkoutPlan) => WorkoutPlanModel.findByIdAndUpdate(id, workoutPlan)
+export const getWorkouts = (userId: string) => WorkoutPlanService.getWorkoutPlans(userId)
+export const getWorkoutById = (id: string) => WorkoutPlanService.getWorkoutPlanById(id)
+export const createWorkoutPlan = (workoutPlan: IWorkoutPlan, userId: string) => WorkoutPlanService.createWorkoutPlan(workoutPlan, userId)
+export const deleteWorkoutPlan = (id: string) => WorkoutPlanService.deleteWorkoutPlan(id)
+export const updateWorkoutPlan = (id: string, workoutPlan: IWorkoutPlan) => WorkoutPlanService.editWorkoutPlan(id, workoutPlan)
