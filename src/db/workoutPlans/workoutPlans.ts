@@ -5,8 +5,8 @@ import {Difficulty, Goal, WorkoutPlan} from "./workoutPlan.interface";
 const WorkoutPlanSchema = new mongoose.Schema<WorkoutPlan>({
     name: {type: String},
     frequency: [{type: Number, enum: [0, 1, 2, 3, 4, 5, 6]}],
-    difficulty: {type: Number, enum: Object.values(Difficulty)},
-    goal: {type: Number, enum: Object.values(Goal)},
+    difficulty: {type: Number},
+    goal: {type: Number},
     duration: {type: Number},
     workouts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Workout'}],
     userId: {type: mongoose.Schema.Types.ObjectId, ref :'User'},

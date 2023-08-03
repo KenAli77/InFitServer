@@ -34,11 +34,17 @@ export const newWorkoutPlan = async (req: Request, res: Response) => {
          return res.sendStatus(404)
         }
 
-        const workoutData = req.body.workout as WorkoutPlan
+        const workoutData = req.body as WorkoutPlan
 
         if(!workoutData){
           return  res.sendStatus(400)
         }
+
+        console.log(workoutData)
+
+        workoutData.workouts.forEach(()=>{
+
+        })
 
         workoutData.userId = userId
 
