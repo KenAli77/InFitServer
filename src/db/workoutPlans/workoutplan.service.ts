@@ -2,7 +2,6 @@ import {IWorkoutPlan} from "./workoutPlan.interface";
 import WorkoutPlan, {WorkoutPlanDocument} from "./workoutPlan";
 import {WorkoutService} from "../workouts/workout.service";
 import workout, {WorkoutDocument} from "../workouts/workout";
-import {newWorkoutPlan} from "../../controllers/workoutPlan";
 
 export class WorkoutPlanService {
 
