@@ -1,18 +1,17 @@
 
 
-export interface Workout {
+export interface IWorkout {
     name: string,
     targetMuscleGroups: Muscle[],
     duration: number,
     dayOfWeek: number,
-    exerciseItems: ExerciseItem[],
-
+    exerciseItems: IExerciseItem[],
 }
 
-export interface ExerciseItem {
+export interface IExerciseItem {
     exercise: Exercise;
     equipment: Equipment;
-    volume: ExerciseVolume[];
+    volume: IExerciseVolume[];
     sets: number;
     duration: number;
 }
@@ -22,7 +21,7 @@ export enum Exercise {
     BenchPress
 }
 
-export interface ExerciseVolume{
+export interface IExerciseVolume {
     set:number,
     reps:number,
     weight:number,

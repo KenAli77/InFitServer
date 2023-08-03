@@ -54,7 +54,7 @@ export const login = async (req: express.Request, res: express.Response) => {
         const user = await getUserByEmail(email).select('+auth.salt + auth.password')
 
         if(!user){
-            console.log("user already registered")
+            console.log("user not registered")
             return res.sendStatus(400)
         }
 

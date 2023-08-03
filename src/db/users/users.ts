@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
-import {User} from "./user.interface";
+import {IUser} from "./user.interface";
 
-export const UserSchema = new mongoose.Schema<User>({
+export type UserDocument = mongoose.Document & IUser & {}
+
+export const UserSchema = new mongoose.Schema<IUser>({
     username: {
         type: String,
         required: true
@@ -31,7 +33,7 @@ export const UserSchema = new mongoose.Schema<User>({
     }
 })
 
-export const UserModel = mongoose.model('User',UserSchema)
+export const UserModel = mongoose.model<UserDocument>('User',UserSchema)
 /**
  * TODO abstract model functions
  */

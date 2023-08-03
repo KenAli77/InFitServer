@@ -1,15 +1,15 @@
 import {Request, Response} from "express";
 import {get} from "lodash";
-import {User} from "../db/users/user.interface";
+import {IUser} from "../db/users/user.interface";
 import {createWorkoutPlan, getWorkoutById, updateWorkoutPlan} from "../db/workoutPlans/workoutPlans";
-import {WorkoutPlan} from "../db/workoutPlans/workoutPlan.interface";
+import {IWorkoutPlan} from "../db/workoutPlans/workoutPlan.interface";
 
 
 export const getWorkouts = async (req: Request, res: Response) => {
     try {
 
         const currentUser = get(req,'identity._id') as string
-        const user = get(req,'identity') as User
+        const user = get(req,'identity') as IUser
         if(!currentUser){
             res.sendStatus(404)
         }
@@ -29,12 +29,12 @@ export const getWorkouts = async (req: Request, res: Response) => {
 export const newWorkoutPlan = async (req: Request, res: Response) => {
     try {
         const userId = get(req,'identity._id') as string
-        const user = get(req,'identity') as User
+        const user = get(req,'identity') as IUser
         if(!user){
          return res.sendStatus(404)
         }
 
-        const workoutData = req.body as WorkoutPlan
+        const workoutData = req.body as IWorkoutPlan
 
         if(!workoutData){
           return  res.sendStatus(400)
@@ -63,7 +63,7 @@ export const newWorkoutPlan = async (req: Request, res: Response) => {
 export const editWorkoutPlan = async (req: Request, res: Response) => {
     try {
         const userId = get(req,'identity._id') as string
-        const user = get(req,'identity') as User
+        const user = get(req,'identity') as IUser
         if(!user){
            return  res.sendStatus(404)
         }
@@ -73,7 +73,7 @@ export const editWorkoutPlan = async (req: Request, res: Response) => {
           return  res.sendStatus(400)
         }
 
-        const newWorkoutPlan = workoutPlan as WorkoutPlan
+        const newWorkoutPlan = workoutPlan as IWorkoutPlan
 
         workoutPlan.userId = userId
 

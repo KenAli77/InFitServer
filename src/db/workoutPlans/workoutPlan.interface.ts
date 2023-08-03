@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
-import {User} from "../users/user.interface";
-import {Workout} from "../workouts/workout.interface";
+import {IUser} from "../users/user.interface";
+import {IWorkout} from "../workouts/workout.interface";
+import {WorkoutPlanDocument} from "./workoutPlans";
+import {WorkoutDocument} from "../workouts/workouts";
+import {UserDocument} from "../users/users";
 
 export enum Difficulty {
     Beginner,
@@ -14,12 +17,12 @@ export enum Goal {
     Maintain,
 }
 
-export interface WorkoutPlan {
-    userId: string | mongoose.Schema.Types.ObjectId,
+export interface IWorkoutPlan {
+    userId: string | UserDocument,
     name: string,
     frequency: number[],
     difficulty: Difficulty,
     goal: Goal,
     duration: number,
-    workouts: string[] | Workout[],
+    workouts: Array<string> | Array<WorkoutDocument>,
 }
