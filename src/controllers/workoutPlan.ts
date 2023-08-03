@@ -1,7 +1,7 @@
 import {Request, Response} from "express";
 import {get} from "lodash";
 import {IUser} from "../db/users/user.interface";
-import {createWorkoutPlan, getWorkoutById, updateWorkoutPlan} from "../db/workoutPlans/workoutPlans";
+import {createWorkoutPlan, getWorkoutById, updateWorkoutPlan} from "../db/workoutPlans/workoutPlan";
 import {IWorkoutPlan} from "../db/workoutPlans/workoutPlan.interface";
 
 
@@ -42,15 +42,7 @@ export const newWorkoutPlan = async (req: Request, res: Response) => {
 
         console.log(workoutData)
 
-        workoutData.workouts.forEach(()=>{
-
-        })
-
-        workoutData.userId = userId
-
-        console.log(workoutData)
-
-        const workoutPlan = await createWorkoutPlan(workoutData)
+        const workoutPlan = await createWorkoutPlan(workoutData,userId)
 
         res.status(200).json(workoutPlan).end()
 

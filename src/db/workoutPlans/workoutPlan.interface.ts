@@ -1,8 +1,4 @@
-import mongoose from "mongoose";
-import {IUser} from "../users/user.interface";
-import {IWorkout} from "../workouts/workout.interface";
-import {WorkoutPlanDocument} from "./workoutPlans";
-import {WorkoutDocument} from "../workouts/workouts";
+import {WorkoutDocument} from "../workouts/workout";
 import {UserDocument} from "../users/users";
 
 export enum Difficulty {
@@ -24,5 +20,5 @@ export interface IWorkoutPlan {
     difficulty: Difficulty,
     goal: Goal,
     duration: number,
-    workouts: Array<string> | Array<WorkoutDocument>,
+    workouts:  Array<WorkoutDocument> | Array<string> ,
 }

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import {Difficulty, Goal, IWorkoutPlan} from "./workoutPlan.interface";
+import {WorkoutPlanService} from "./workoutplan.service";
 
 
 export type WorkoutPlanDocument = mongoose.Document & IWorkoutPlan & {}
@@ -20,6 +21,6 @@ export default WorkoutPlanModel;
 
 export const getWorkouts = (userId: string) => WorkoutPlanModel.find({userId})
 export const getWorkoutById = (id: string) => WorkoutPlanModel.findById(id)
-export const createWorkoutPlan = (workoutPlan: IWorkoutPlan) => new WorkoutPlanModel(workoutPlan).save()
+export const createWorkoutPlan = (workoutPlan: IWorkoutPlan,userId:string) => WorkoutPlanService.createWorkoutPlan(workoutPlan,userId)
 export const deleteWorkoutPlan = (id: string) => WorkoutPlanModel.findOneAndDelete({_id: id})
 export const updateWorkoutPlan = (id: string, workoutPlan: IWorkoutPlan) => WorkoutPlanModel.findByIdAndUpdate(id, workoutPlan)

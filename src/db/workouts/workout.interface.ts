@@ -1,3 +1,4 @@
+import {WorkoutPlanDocument} from "../workoutPlans/workoutPlan";
 
 
 export interface IWorkout {
@@ -6,6 +7,7 @@ export interface IWorkout {
     duration: number,
     dayOfWeek: number,
     exerciseItems: IExerciseItem[],
+    workoutPlan:string|WorkoutPlanDocument
 }
 
 export interface IExerciseItem {
