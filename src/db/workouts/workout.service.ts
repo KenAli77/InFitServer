@@ -37,7 +37,8 @@ export class WorkoutService {
     static async getWorkouts(workoutPlanId: string): Promise<Array<WorkoutDocument>> {
         return new Promise(async (resolve, reject) => {
             try {
-                const workout = await Workout.find({workoutPlanId: workoutPlanId})
+                const workout = await Workout.find({workoutPlan: workoutPlanId})
+                console.log("workout id",workoutPlanId)
                 resolve(workout)
             } catch (e) {
                 reject(e)

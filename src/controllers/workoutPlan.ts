@@ -1,11 +1,12 @@
 import {Request, Response} from "express";
 import {get} from "lodash";
 import {IUser} from "../db/users/user.interface";
-import {createWorkoutPlan, getWorkoutById, updateWorkoutPlan} from "../db/workoutPlans/workoutPlan";
+import {createWorkoutPlan, getWorkoutPlans, updateWorkoutPlan} from "../db/workoutPlans/workoutPlan";
 import {IWorkoutPlan} from "../db/workoutPlans/workoutPlan.interface";
+import {WorkoutService} from "../db/workouts/workout.service";
 
 
-export const getWorkouts = async (req: Request, res: Response) => {
+export const fetchWorkoutPlans = async (req: Request, res: Response) => {
     try {
 
         const currentUser = get(req,'identity._id') as string
@@ -14,11 +15,15 @@ export const getWorkouts = async (req: Request, res: Response) => {
             res.sendStatus(404)
         }
 
-        const workouts = await getWorkoutById(currentUser)
+        const workoutPlans = await getWorkoutPlans(currentUser)
+
+        for (const workoutPlan of workoutPlans) {
+            workoutPlan.workouts = await WorkoutService.getWorkouts(workoutPlan._id)
+        }
 
         console.log(user)
 
-        res.status(200).json(workouts).end()
+        res.status(200).json(workoutPlans).end()
 
     } catch (e) {
         console.log(e)

@@ -8,7 +8,7 @@ const WorkoutSchema = new mongoose.Schema<IWorkout>({
     name: {type: String},
     targetMuscleGroups: [{type: Number}],
     duration: {type: Number},
-    dayOfWeek: [{type: Number}],
+    dayOfWeek: {type: Number},
     exerciseItems: [{
         exercise: {type: Number},
         equipment: {type: Number},

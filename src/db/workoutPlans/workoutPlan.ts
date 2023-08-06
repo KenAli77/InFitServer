@@ -19,7 +19,7 @@ const WorkoutPlanModel = mongoose.model<WorkoutPlanDocument>('WorkoutPlan', Work
 
 export default WorkoutPlanModel;
 
-export const getWorkouts = (userId: string) => WorkoutPlanService.getWorkoutPlans(userId)
+export const getWorkoutPlans = (userId: string) => WorkoutPlanService.getWorkoutPlans(userId)
 export const getWorkoutById = (id: string) => WorkoutPlanService.getWorkoutPlanById(id)
 export const createWorkoutPlan = (workoutPlan: IWorkoutPlan, userId: string) => WorkoutPlanService.createWorkoutPlan(workoutPlan, userId)
 export const deleteWorkoutPlan = (id: string) => WorkoutPlanService.deleteWorkoutPlan(id)
