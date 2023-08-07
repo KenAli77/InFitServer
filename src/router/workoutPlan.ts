@@ -4,8 +4,8 @@ import {newWorkoutPlan, editWorkoutPlan, fetchWorkoutPlans} from "../controllers
 
 
 export default (router:Router) => {
-    router.get('/api/workouts', isAuthenticated, fetchWorkoutPlans)
-    router.post('/api/workouts',isAuthenticated,newWorkoutPlan)
-    router.put('/api/workouts/:id',isAuthenticated,editWorkoutPlan)
+    router.get('/api/app/workoutPlan', isAuthenticated, fetchWorkoutPlans)
+    router.post('/api/app/workoutPlan',isAuthenticated,newWorkoutPlan)
+    router.put('/api/app/workoutPlan/:id',isAuthenticated,editWorkoutPlan)
 }
 
