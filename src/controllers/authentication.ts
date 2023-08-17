@@ -2,7 +2,7 @@ import express from 'express'
 import {createUser, getUserByEmail} from "../db/users/users";
 import {authentication, random} from "../helpers";
 
-export const register = async (req: express.Request, res: express.Response) => {
+export const register =  async (req: express.Request, res: express.Response) => {
 
     try {
 
@@ -68,6 +68,7 @@ export const login = async (req: express.Request, res: express.Response) => {
         const salt = random()
         user.auth.sessionToken = authentication(salt,user._id.toString())
 
+        console.log("setting token to",user.auth.sessionToken)
         await user.save()
 
         res.cookie("authToken",user.auth.sessionToken, {domain:'localhost',path:'/'})

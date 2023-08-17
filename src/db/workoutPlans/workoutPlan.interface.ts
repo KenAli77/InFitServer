@@ -2,21 +2,21 @@ import {WorkoutDocument} from "../workouts/workout";
 import {UserDocument} from "../users/users";
 
 export enum Difficulty {
-    Beginner,
-    Intermediate,
-    Advanced,
+    Beginner="Beginner",
+    Intermediate="Intermediate",
+    Advanced="Advanced",
 }
 
 export enum Goal {
-    Mass,
-    FatLoss,
-    Maintain,
+    Mass="Mass",
+    FatLoss="FatLoss",
+    Maintain="Maintain",
 }
 
 export interface IWorkoutPlan {
     userId: string | UserDocument,
     name: string,
-    frequency: number[],
+    frequency: string[],
     difficulty: Difficulty,
     goal: Goal,
     duration: number,

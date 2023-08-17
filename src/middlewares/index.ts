@@ -7,14 +7,17 @@ export const isAuthenticated = async (req: Request, res: Response ,next:NextFunc
     try {
     const sessionToken = req.cookies["authToken"];
 
+    console.log(req.cookies)
     if(!sessionToken){
-        res.sendStatus(403)
+        next(Error("missing session token"))
+
     }
 
     const existingUser = await getUserBySessionToken(sessionToken);
 
     if(!existingUser){
-        res.sendStatus(403)
+        console.log("user not found",sessionToken)
+        next(Error("user not found"))
     }
 
     merge(req,{identity:existingUser});

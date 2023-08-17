@@ -7,9 +7,9 @@ export type WorkoutPlanDocument = mongoose.Document & IWorkoutPlan & {}
 
 const WorkoutPlanSchema = new mongoose.Schema<IWorkoutPlan>({
     name: {type: String},
-    frequency: [{type: Number, enum: [0, 1, 2, 3, 4, 5, 6]}],
-    difficulty: {type: Number},
-    goal: {type: Number},
+    frequency: [{type: String}],
+    difficulty: {type: String},
+    goal: {type: String},
     duration: {type: Number},
     workouts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Workout'}],
     userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},

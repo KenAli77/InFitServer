@@ -49,7 +49,7 @@ export const newWorkoutPlan = async (req: Request, res: Response) => {
 
         const workoutPlan = await createWorkoutPlan(workoutData,userId)
 
-        res.status(200).json(workoutPlan).end()
+        res.status(200).json({success:true,data:workoutPlan}).end()
 
     } catch (e) {
         console.log(e)
